@@ -44,7 +44,7 @@ end
 vim.keymap.set('n', '<leader>tt', _G.toggle_nvim_tree, { desc = '[T]oggle [T]ree' })
 
 -- Exit terminal mode using <Esc>
-vim.keymap.set('t', '<Esc', '<C-\\><C-n>', { desc = 'Exit terminal insert mode' })
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal insert mode' })
 
 -- [[ Keymaps to work with tabs ]]
 -- use <Tab> to go to next tab
