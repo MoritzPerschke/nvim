@@ -39,5 +39,8 @@ require 'keymaps'
 -- [[ Configure Harpoon ]]
 require 'harpoon-setup'
 
+-- [[ Configure Bracket autocompletion ]]
+require 'autocomplete-brackets'
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
