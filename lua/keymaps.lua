@@ -47,9 +47,11 @@ vim.keymap.set('n', '<leader>tt', _G.toggle_nvim_tree, { desc = '[T]oggle [T]ree
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal insert mode' })
 
 -- [[ Keymaps to work with tabs ]]
--- use <Tab> to go to next tab
--- vim.keymap.set('n', '<leader><Tab>', ':tabnext<CR>', { desc = 'Switch to next tab' })
+-- use <leader>tn to go to next tab
+vim.keymap.set('n', '<leader>tn', ':tabnext<CR>', { desc = 'Switch to next tab' })
 
--- use Shift-<Tab> to go to previous tab
--- vim.keymap.set('n', '<leader><S-Tab>', ':tabprevious<CR>', { desc = 'Switch to previous tab' })
+-- use <leader>tp to go to previous tab
+vim.keymap.set('n', '<leader>tp', ':tabprevious<CR>', { desc = 'Switch to previous tab' })
 
+-- use <leader>ta to append a new tab
+vim.keymap.set('n', '<leader>ta', ':tabnew<CR>', { desc = 'Append new Tab'})
