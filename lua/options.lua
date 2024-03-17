@@ -46,4 +46,6 @@ vim.o.cindent = true
 -- enable ctrl backspace to delete word in insert mode
 vim.api.nvim_set_keymap('i', '<C-H>', '<C-W>', {noremap = true})
 
+-- set color scheme
+vim.cmd("colorscheme kanagawa-wave")
 -- vim: ts=2 sts=2 sw=2 et
