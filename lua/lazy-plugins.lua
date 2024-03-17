@@ -194,9 +194,6 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 
-  -- Nvim tree plugin
-  'nvim-tree/nvim-tree.lua',
-
   {
    "folke/tokyonight.nvim",
    lazy = false,
@@ -226,8 +223,18 @@ require('lazy').setup({
     "lervag/vimtex",
     init = function()
     end
-  }
+  },
 
+  -- Nvim tree plugin
+  -- 'nvim-tree/nvim-tree.lua',
+
+  {
+    'tamago324/lir.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'kyazdani42/nvim-web-devicons'
+    }
+  }
 }, {})
 
 -- vim: ts=2 sts=2 sw=2 et

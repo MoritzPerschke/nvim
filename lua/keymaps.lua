@@ -31,17 +31,17 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim .keymap.set('n', '<BS>', '<c-^>', { desc = 'Go back to previous buffer' })
 
 -- Quick function to toggle nvim tree
-vim.g.show_tree = false
-function _G.toggle_nvim_tree()
-  if vim.g.show_tree == true then
-    vim.g.show_tree = false
-    vim.cmd "NvimTreeOpen"
-  else
-    vim.g.show_tree = true
-    vim.cmd "NvimTreeClose"
-  end
-end
-vim.keymap.set('n', '<leader>tt', _G.toggle_nvim_tree, { desc = '[T]oggle [T]ree' })
+-- vim.g.show_tree = false
+-- function _G.toggle_nvim_tree()
+--   if vim.g.show_tree == true then
+--     vim.g.show_tree = false
+--     vim.cmd "NvimTreeOpen"
+--   else
+--     vim.g.show_tree = true
+--     vim.cmd "NvimTreeClose"
+--   end
+-- end
+vim.keymap.set('n', '<leader>f', ":lua require('lir.float').toggle()<CR>", { desc = '[F]ile explorer float' })
 
 -- Exit terminal mode using <Esc>
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal insert mode' })

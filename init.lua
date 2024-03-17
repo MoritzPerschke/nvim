@@ -33,6 +33,9 @@ require 'cmp-setup'
 -- (file tree viewer)
 require 'nvim-tree-setup'
 
+-- [[ Configure lir (file explorer) ]]
+require 'lir-setup'
+
 -- [[ Basic Keymaps ]]
 require 'keymaps'
 
