@@ -24,5 +24,7 @@ require('kanagawa').setup({
     },
 })
 
--- setup must be called before loading
-vim.cmd("colorscheme kanagawa")
+require('onedark').setup {
+    style='deep'
+}
+require('onedark').load()

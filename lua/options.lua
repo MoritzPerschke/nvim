@@ -3,7 +3,7 @@
 -- NOTE: You can change these options as you wish!
 
 -- Set highlight on search
-vim.o.hlsearch = false
+vim.o.hlsearch = true
 
 -- Make line numbers default and relative
 vim.wo.number = true
@@ -41,11 +41,14 @@ vim.o.completeopt = 'menuone,noselect'
 vim.o.termguicolors = true
 
 -- configure autoindent
-vim.o.cindent = true
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.shiftround = true
+vim.o.smartindent = true
 
 -- enable ctrl backspace to delete word in insert mode
 vim.api.nvim_set_keymap('i', '<C-H>', '<C-W>', {noremap = true})
 
 -- set color scheme
-vim.cmd("colorscheme kanagawa-wave")
+vim.cmd('colorscheme kanagawa')
 -- vim: ts=2 sts=2 sw=2 et

@@ -55,3 +55,6 @@ vim.keymap.set('n', '<leader>tp', ':tabprevious<CR>', { desc = 'Switch to previo
 
 -- use <leader>ta to append a new tab
 vim.keymap.set('n', '<leader>ta', ':tabnew<CR>', { desc = 'Append new Tab'})
+
+-- use <leader>tq to close tab
+vim.keymap.set('n', '<leader>tq', ':tabclose<CR>', { desc = 'Append new Tab'})

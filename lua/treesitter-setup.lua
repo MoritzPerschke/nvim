@@ -27,7 +27,10 @@ vim.defer_fn(function()
     ignore_install = {},
     -- You can specify additional Treesitter modules here: -- For example: -- playground = {--enable = true,-- },
     modules = {},
-    highlight = { enable = true },
+    highlight = {
+      enable = true,
+      disable = {"python"},
+    },
     indent = { enable = true },
     incremental_selection = {
       enable = true,
