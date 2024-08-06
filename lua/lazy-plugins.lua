@@ -191,7 +191,14 @@ require('lazy').setup({
     'navarasu/onedark.nvim',
      config = function()
       require('onedark').setup {
-        style = 'warmer'
+        style = 'warmer',
+        code_style = {
+          keywords = 'bold',
+        },
+        diagnostics = {
+          undercurl = false,
+          darker = false,
+        }
       }
      end
   },
