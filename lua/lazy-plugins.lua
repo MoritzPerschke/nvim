@@ -186,32 +186,21 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 
-  -- {
-  --  'folke/tokyonight.nvim',
-  --  lazy = false,
-  --  priority = 1000,
-  --  opts = {},
-  --  config = function()
-  --    vim.cmd("colorscheme tokyonight-night")
-  --  end
-  --  },
-
-  {
-     'rebelot/kanagawa.nvim',
-  },
-
+  -- Colorschemes
   {
     'navarasu/onedark.nvim',
      config = function()
       require('onedark').setup {
-        style = 'deep'
+        style = 'warmer'
       }
      end
   },
-
-  {
-    'savq/melange-nvim',
-  },
+  -- {
+  --  'folke/tokyonight.nvim',
+  --  lazy = false,
+  --  },
+  -- { 'rebelot/kanagawa.nvim', },
+  -- { 'savq/melange-nvim', },
 
   {
     "ThePrimeagen/harpoon",
@@ -227,15 +216,6 @@ require('lazy').setup({
     event = "InsertEnter",
     config = true
   },
-
-  {
-    "lervag/vimtex",
-    init = function()
-    end
-  },
-
-  -- Nvim tree plugin
-  -- 'nvim-tree/nvim-tree.lua',
 
   {
     'tamago324/lir.nvim',
