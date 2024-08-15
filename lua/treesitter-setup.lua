@@ -7,16 +7,17 @@ vim.defer_fn(function()
     ensure_installed = {
       'c',
       'cpp',
-      'go',
       'lua',
       'python',
       'rust',
-      'tsx',
-      'javascript',
-      'typescript',
       'vimdoc',
       'vim',
-      'bash'
+      'bash',
+      'html'
+      -- 'go',
+      -- 'tsx',
+      -- 'javascript',
+      -- 'typescript',
     },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
@@ -88,4 +89,7 @@ vim.defer_fn(function()
   }
 end, 0)
 
+-- use html highlighting on stpl files
+-- https://stackoverflow.com/a/77302088
+vim.cmd('autocmd BufRead,BufNewFile *.stpl set filetype=html')
 -- vim: ts=2 sts=2 sw=2 et
