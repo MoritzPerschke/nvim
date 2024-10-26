@@ -31,7 +31,7 @@ require 'cmp-setup'
 
 -- [[ Configure Nvim Tree ]]
 -- (file tree viewer)
-require 'nvim-tree-setup'
+-- require 'nvim-tree-setup'
 
 -- [[ Configure lir (file explorer) ]]
 require 'lir-setup'

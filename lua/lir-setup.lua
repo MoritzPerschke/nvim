@@ -38,24 +38,24 @@ require'lir'.setup {
     winblend = 0,
     curdir_window = {
       enable = false,
-      highlight_dirname = false
+      highlight_dirname = true 
     },
 
     -- -- You can define a function that returns a table to be passed as the third
     -- -- argument of nvim_open_win().
-    -- win_opts = function()
-    --   local width = math.floor(vim.o.columns * 0.8)
-    --   local height = math.floor(vim.o.lines * 0.8)
-    --   return {
-    --     border = {
-    --       "+", "─", "+", "│", "+", "─", "+", "│",
-    --     },
-    --     width = width,
-    --     height = height,
-    --     row = 1,
-    --     col = math.floor((vim.o.columns - width) / 2),
-    --   }
-    -- end,
+    win_opts = function()
+      local width = math.floor(vim.o.columns * 0.5)
+      local height = math.floor(vim.o.lines * 0.5)
+      return {
+        border = {
+          "+", "─", "+", "│", "+", "─", "+", "│",
+        },
+        width = width,
+        height = height,
+        row = math.floor((vim.o.lines - height) / 2),
+        col = math.floor((vim.o.columns - width) / 2),
+      }
+    end,
   },
   hide_cursor = true
 }
@@ -85,3 +85,30 @@ require'nvim-web-devicons'.set_icon({
     name = "LirFolderNode"
   }
 })
+
+function _G._LirSetTextFloatCurdirWindow()
+  if vim.w.lir_is_float then
+    local lir_config = require('lir.config')
+    local bufnr = vim.w.lir_curdir_win.bufnr
+    if lir_config.values.show_hidden_files then
+      vim.api.nvim_buf_set_extmark(bufnr, 1, 0, 1, {
+        end_col = 2,
+        -- Icons and marks can be freely changed.
+        virt_text = { { "o", "WarningMsg" } },
+      })
+    else
+      vim.api.nvim_buf_set_extmark(bufnr, 1, 0, 1, {
+        end_col = 2,
+        -- Icons and marks can be freely changed.
+        virt_text = { { "x", "Comment" } },
+      })
+    end
+  end
+end
+
+vim.api.nvim_exec2([[
+augroup my-lir
+  autocmd!
+  autocmd User LirSetTextFloatCurdirWindow lua _LirSetTextFloatCurdirWindow()
+augroup END
+]], {})

@@ -202,12 +202,12 @@ require('lazy').setup({
       }
      end
   },
-  -- {
-  --  'folke/tokyonight.nvim',
-  --  lazy = false,
-  --  },
-  -- { 'rebelot/kanagawa.nvim', },
-  -- { 'savq/melange-nvim', },
+  {
+   'folke/tokyonight.nvim',
+   lazy = false,
+   },
+  { 'rebelot/kanagawa.nvim', },
+  { 'savq/melange-nvim', },
 
   {
     "ThePrimeagen/harpoon",
@@ -230,7 +230,7 @@ require('lazy').setup({
       'nvim-lua/plenary.nvim',
       'kyazdani42/nvim-web-devicons'
     }
-  }
+  },
 }, {})
 
 -- vim: ts=2 sts=2 sw=2 et

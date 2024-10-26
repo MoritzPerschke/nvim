@@ -49,6 +49,16 @@ vim.o.smartindent = true
 -- enable ctrl backspace to delete word in insert mode
 vim.api.nvim_set_keymap('i', '<C-H>', '<C-W>', {noremap = true})
 
+local opts = { noremap=true, silent=true }
+
+local function quickfix()
+    vim.lsp.buf.code_action({
+        filter = function(a) return a.isPreferred end,
+        apply = true
+    })
+end
+
+vim.keymap.set('n', '<leader>qf', quickfix, opts)
 -- set color scheme
 vim.cmd('colorscheme onedark')
 -- vim: ts=2 sts=2 sw=2 et

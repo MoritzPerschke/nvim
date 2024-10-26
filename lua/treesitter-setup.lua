@@ -13,7 +13,8 @@ vim.defer_fn(function()
       'vimdoc',
       'vim',
       'bash',
-      'html'
+      'html',
+      'cmake',
       -- 'go',
       -- 'tsx',
       -- 'javascript',
