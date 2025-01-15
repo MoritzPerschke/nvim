@@ -5,13 +5,22 @@ vim.g.coq_settings = {
   auto_start = 'shut-up',
   keymap = {
     recommended = true,
-    jump_to_mark = "<c-,>"
+    pre_select = false, -- automatically select first entry in popup
   },
   display = {
     ghost_text = {
       enabled = true
-    }
+    },
+    statusline = {
+      helo = false,
+    },
+  },
+  match = {
+    max_results = 7,
+    fuzzy_cutoff = 0.7,
+  },
+  weights = {
+    recency = 1.5
   }
 }
-
-vim.api.nvim_set_keymap('i', '<Esc>', [[pumvisible() ? "<C-e><Esc>" : "\<Esc>"]], { expr = true, silent = true })
+vim.api.nvim_set_keymap('i', '<Space>', [[pumvisible() ? "\<C-y> " : "\<Space>"]], { expr = true, silent = true })
