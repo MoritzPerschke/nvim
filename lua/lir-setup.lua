@@ -51,7 +51,7 @@ require'lir'.setup {
   float = {
     winblend = 0,
     curdir_window = {
-      enable = true,
+      enable = false, -- false while using noice
       highlight_dirname = true
     },
 
@@ -96,7 +96,7 @@ vim.api.nvim_create_autocmd({'FileType'}, {
 require'nvim-web-devicons'.set_icon({
   lir_folder_icon = {
     icon = "",
-    color = "#7ebae4",
+    color = "#7ebae4", -- could change this at some point fun
     name = "LirFolderNode"
   }
 })

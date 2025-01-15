@@ -30,10 +30,6 @@ require 'lsp-setup'
 -- require 'cmp-setup'
 require 'coq-setup'
 
--- [[ Configure Nvim Tree ]]
--- (file tree viewer)
--- require 'nvim-tree-setup'
-
 -- [[ Configure lir (file explorer) ]]
 require 'lir-setup'
 
