@@ -1,3 +1,6 @@
+---@diagnostic disable: missing-fields
+
+local lir = require'lir'
 local actions = require'lir.actions'
 local mark_actions = require 'lir.mark.actions'
 local clipboard_actions = require'lir.clipboard.actions'
@@ -7,7 +10,7 @@ require'lir'.setup {
   ignore = {}, -- { ".DS_Store", "node_modules" } etc.
   devicons = {
     enable = true,
-    highlight_dirname = false
+    highlight_dirname = true
   },
   mappings = {
     ['l']     = actions.edit,
@@ -27,35 +30,47 @@ require'lir'.setup {
     ['D']     = actions.delete,
 
     ['J'] = function()
-      mark_actions.toggle_mark()
+      mark_actions.toggle_mark('n')
       vim.cmd('normal! j')
     end,
     ['C'] = clipboard_actions.copy,
     ['X'] = clipboard_actions.cut,
     ['P'] = clipboard_actions.paste,
+
+    ['O'] = function()
+      local current = lir.get_context():current()
+      local extension = string.match(current.value, '[^.]+$')
+      if extension == 'pdf' then
+        vim.fn.system('xdg-open ' .. current.fullpath)
+        return
+      elseif extension == 'png' or extension == 'jpg' then
+        vim.fn.system('xdg-open ' .. current.fullpath)
+      end
+    end
   },
   float = {
     winblend = 0,
     curdir_window = {
-      enable = false,
-      highlight_dirname = true 
+      enable = true,
+      highlight_dirname = true
     },
 
-    -- -- You can define a function that returns a table to be passed as the third
-    -- -- argument of nvim_open_win().
-    win_opts = function()
-      local width = math.floor(vim.o.columns * 0.5)
-      local height = math.floor(vim.o.lines * 0.5)
-      return {
-        border = {
-          "+", "─", "+", "│", "+", "─", "+", "│",
-        },
-        width = width,
-        height = height,
-        row = math.floor((vim.o.lines - height) / 2),
-        col = math.floor((vim.o.columns - width) / 2),
-      }
-    end,
+    -- -- -- You can define a function that returns a table to be passed as the third
+    -- -- -- argument of nvim_open_win().
+    -- win_opts = function()
+    --   local width = math.floor(vim.o.columns * 0.5)
+    --   local height = math.floor(vim.o.lines * 0.5)
+    --   return {
+    --     border = {
+    --       "+", "=", "+", "│", "+", "=", "+", "│",
+    --     },
+    --     width = width,
+    --     height = height,
+    --     row = math.floor((vim.o.lines - height) / 2),
+    --     col = math.floor((vim.o.columns - width) / 2),
+    --   }
+    -- end,
+
   },
   hide_cursor = true
 }
