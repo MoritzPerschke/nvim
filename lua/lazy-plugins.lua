@@ -187,27 +187,15 @@ require('lazy').setup({
   },
 
   -- Colorschemes
-  {
-    'navarasu/onedark.nvim',
-     config = function()
-      require('onedark').setup {
-        style = 'warmer',
-        code_style = {
-          keywords = 'bold',
-        },
-        diagnostics = {
-          undercurl = false,
-          darker = false,
-        }
-      }
-     end
-  },
+  { 'navarasu/onedark.nvim', },
   {
    'folke/tokyonight.nvim',
    lazy = false,
    },
   { 'rebelot/kanagawa.nvim', },
   { 'savq/melange-nvim', },
+  { "nyoom-engineering/oxocarbon.nvim" },
+  { "rose-pine/neovim", name = "rose-pine" },
 
   {
     "ThePrimeagen/harpoon",

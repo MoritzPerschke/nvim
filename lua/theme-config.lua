@@ -23,9 +23,10 @@ require('kanagawa').setup({
         light = "lotus"
     },
 })
---
--- require('onedark').setup {
---     style='deep',
---     transparent=true
--- }
+
+require('onedark').setup {
+    style='deep',
+    transparent=true
+}
+
 -- require('onedark').load()
