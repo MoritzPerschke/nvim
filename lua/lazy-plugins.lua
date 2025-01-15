@@ -23,7 +23,9 @@ require('lazy').setup({
       -- Automatically install LSPs to stdpath for neovim
       { 'williamboman/mason.nvim', config = true },
       'williamboman/mason-lspconfig.nvim',
-
+      { "ms-jpq/coq_nvim", branch = "coq" },
+      { "ms-jpq/coq.artifacts", branch = "artifacts" },
+      { 'ms-jpq/coq.thirdparty', branch = "3p" },
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim',       opts = {} },
@@ -31,35 +33,44 @@ require('lazy').setup({
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
     },
+    init = function()
+        vim.g.coq_settings = {
+            auto_start = true, -- if you want to start COQ at startup
+            -- Your COQ settings here
+        }
+      end,
+      config = function()
+        -- Your LSP settings here
+      end,
   },
 
-  {
-    -- Autocompletion
-    'hrsh7th/nvim-cmp',
-    dependencies = {
-      -- Snippet Engine & its associated nvim-cmp source
-      {
-        'L3MON4D3/LuaSnip',
-        build = (function()
-          -- Build Step is needed for regex support in snippets
-          -- This step is not supported in many windows environments
-          -- Remove the below condition to re-enable on windows
-          if vim.fn.has 'win32' == 1 then
-            return
-          end
-          return 'make install_jsregexp'
-        end)(),
-      },
-      'saadparwaiz1/cmp_luasnip',
-
-      -- Adds LSP completion capabilities
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-path',
-
-      -- Adds a number of user-friendly snippets
-      'rafamadriz/friendly-snippets',
-    },
-  },
+  -- {
+  --   -- Autocompletion
+  --   'hrsh7th/nvim-cmp',
+  --   dependencies = {
+  --     -- Snippet Engine & its associated nvim-cmp source
+  --     {
+  --       'L3MON4D3/LuaSnip',
+  --       build = (function()
+  --         -- Build Step is needed for regex support in snippets
+  --         -- This step is not supported in many windows environments
+  --         -- Remove the below condition to re-enable on windows
+  --         if vim.fn.has 'win32' == 1 then
+  --           return
+  --         end
+  --         return 'make install_jsregexp'
+  --       end)(),
+  --     },
+  --     'saadparwaiz1/cmp_luasnip',
+  --
+  --     -- Adds LSP completion capabilities
+  --     'hrsh7th/cmp-nvim-lsp',
+  --     'hrsh7th/cmp-path',
+  --
+  --     -- Adds a number of user-friendly snippets
+  --     'rafamadriz/friendly-snippets',
+  --   },
+  -- },
 
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim',  opts = {} },

@@ -27,7 +27,8 @@ require 'lsp-setup'
 
 -- [[ Configure nvim-cmp ]]
 -- (completion)
-require 'cmp-setup'
+-- require 'cmp-setup'
+require 'coq-setup'
 
 -- [[ Configure Nvim Tree ]]
 -- (file tree viewer)
