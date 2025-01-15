@@ -222,6 +222,7 @@ require('lazy').setup({
   { "nyoom-engineering/oxocarbon.nvim" },
   { "rose-pine/neovim", name = "rose-pine" },
   { "catppuccin/nvim", name = "catppuccin" },
+  { "EdenEast/nightfox.nvim" },
 
   {
     "ThePrimeagen/harpoon",

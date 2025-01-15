@@ -60,5 +60,5 @@ end
 
 vim.keymap.set('n', '<leader>qf', quickfix, opts)
 -- set color scheme
-vim.cmd('colorscheme onedark')
+vim.cmd('colorscheme oxocarbon')
 -- vim: ts=2 sts=2 sw=2 et
