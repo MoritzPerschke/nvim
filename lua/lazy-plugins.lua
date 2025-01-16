@@ -220,6 +220,14 @@ require('lazy').setup({
       'kyazdani42/nvim-web-devicons'
     }
   },
+  {
+    "lervag/vimtex",
+    lazy = true,     -- we don't want to lazy load VimTeX
+    init = function()
+      -- VimTeX configuration goes here, e.g.
+      vim.g.vimtex_view_method = "zathura"
+    end
+  }
 }, {})
 
 -- vim: ts=2 sts=2 sw=2 et
