@@ -10,9 +10,6 @@ require 'lazy-bootstrap'
 -- [[ Configure plugins ]]
 require 'lazy-plugins'
 
--- [[ Setting options ]]
-require 'options'
-
 -- [[ Configure Telescope ]]
 -- (fuzzy finder)
 require 'telescope-setup'
@@ -41,6 +38,9 @@ require 'harpoon-setup'
 
 -- [[ Configure Bracket autocompletion ]]
 require 'lualine-setup'
+
+-- [[ Setting options ]]
+require 'options'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

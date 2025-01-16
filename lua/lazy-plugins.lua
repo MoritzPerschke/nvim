@@ -23,9 +23,9 @@ require('lazy').setup({
       -- Automatically install LSPs to stdpath for neovim
       { 'williamboman/mason.nvim', config = true },
       'williamboman/mason-lspconfig.nvim',
-      { "ms-jpq/coq_nvim", branch = "coq" },
-      { "ms-jpq/coq.artifacts", branch = "artifacts" },
-      { 'ms-jpq/coq.thirdparty', branch = "3p" },
+      { "ms-jpq/coq_nvim",         branch = "coq" },
+      { "ms-jpq/coq.artifacts",    branch = "artifacts" },
+      { 'ms-jpq/coq.thirdparty',   branch = "3p" },
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim',       opts = {} },
@@ -34,14 +34,14 @@ require('lazy').setup({
       'folke/neodev.nvim',
     },
     init = function()
-        vim.g.coq_settings = {
-            auto_start = true, -- if you want to start COQ at startup
-            -- Your COQ settings here
-        }
-      end,
-      config = function()
-        -- Your LSP settings here
-      end,
+      vim.g.coq_settings = {
+        auto_start = true, -- if you want to start COQ at startup
+        -- Your COQ settings here
+      }
+    end,
+    config = function()
+      -- Your LSP settings here
+    end,
   },
   {
     "folke/noice.nvim",
@@ -56,7 +56,7 @@ require('lazy').setup({
       --   `nvim-notify` is only needed, if you want to use the notification view.
       --   If not available, we use `mini` as the fallback
       "rcarriga/nvim-notify",
-      }
+    }
   },
   -- {
   --   -- Autocompletion
@@ -220,8 +220,8 @@ require('lazy').setup({
   { 'rebelot/kanagawa.nvim', },
   { 'savq/melange-nvim', },
   { "nyoom-engineering/oxocarbon.nvim" },
-  { "rose-pine/neovim", name = "rose-pine" },
-  { "catppuccin/nvim", name = "catppuccin" },
+  { "rose-pine/neovim",                name = "rose-pine" },
+  { "catppuccin/nvim",                 name = "catppuccin" },
   { "EdenEast/nightfox.nvim" },
 
   {
@@ -246,6 +246,16 @@ require('lazy').setup({
       'kyazdani42/nvim-web-devicons'
     }
   },
+  {
+    "OXY2DEV/markview.nvim",
+    lazy = true,     -- Recommended
+    ft = "markdown", -- If you decide to lazy-load anyway
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons"
+    },
+  },
+
 }, {})
 
 -- vim: ts=2 sts=2 sw=2 et

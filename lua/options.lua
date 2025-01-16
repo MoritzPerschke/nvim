@@ -59,6 +59,14 @@ local function quickfix()
 end
 
 vim.keymap.set('n', '<leader>qf', quickfix, opts)
+
+require('markview').setup({
+    -- Other configurations for markview.nvim
+    split_conf = {
+        split = "below", -- Options: "below", "above", "left", "right"
+    },
+})
+
 -- set color scheme
 vim.cmd('colorscheme oxocarbon')
 -- vim: ts=2 sts=2 sw=2 et
