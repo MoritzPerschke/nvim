@@ -23,9 +23,7 @@ require 'treesitter-setup'
 require 'lsp-setup'
 
 -- [[ Configure nvim-cmp ]]
--- (completion)
--- require 'cmp-setup'
-require 'coq-setup'
+require 'cmp-setup'
 
 -- [[ Configure lir (file explorer) ]]
 require 'lir-setup'

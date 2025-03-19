@@ -65,6 +65,9 @@ require('markview').setup({
     split_conf = {
         split = "below", -- Options: "below", "above", "left", "right"
     },
+    preview = {
+      linewise_hybrid_mode = true
+  }
 })
 
 -- set color scheme

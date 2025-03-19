@@ -23,9 +23,6 @@ require('lazy').setup({
       -- Automatically install LSPs to stdpath for neovim
       { 'williamboman/mason.nvim', config = true },
       'williamboman/mason-lspconfig.nvim',
-      { "ms-jpq/coq_nvim",         branch = "coq" },
-      { "ms-jpq/coq.artifacts",    branch = "artifacts" },
-      { 'ms-jpq/coq.thirdparty',   branch = "3p" },
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim',       opts = {} },
@@ -33,58 +30,35 @@ require('lazy').setup({
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
     },
-    init = function()
-      vim.g.coq_settings = {
-        auto_start = true, -- if you want to start COQ at startup
-        -- Your COQ settings here
-      }
-    end,
-    config = function()
-      -- Your LSP settings here
-    end,
   },
+
   {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    opts = {
-      -- add any options here
-    },
+    -- Autocompletion
+    'hrsh7th/nvim-cmp',
     dependencies = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-      "MunifTanjim/nui.nvim",
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
-      "rcarriga/nvim-notify",
-    }
+      -- Snippet Engine & its associated nvim-cmp source
+      {
+        'L3MON4D3/LuaSnip',
+        build = (function()
+          -- Build Step is needed for regex support in snippets
+          -- This step is not supported in many windows environments
+          -- Remove the below condition to re-enable on windows
+          if vim.fn.has 'win32' == 1 then
+            return
+          end
+          return 'make install_jsregexp'
+        end)(),
+      },
+      'saadparwaiz1/cmp_luasnip',
+
+      -- Adds LSP completion capabilities
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-path',
+
+      -- Adds a number of user-friendly snippets
+      'rafamadriz/friendly-snippets',
+    },
   },
-  -- {
-  --   -- Autocompletion
-  --   'hrsh7th/nvim-cmp',
-  --   dependencies = {
-  --     -- Snippet Engine & its associated nvim-cmp source
-  --     {
-  --       'L3MON4D3/LuaSnip',
-  --       build = (function()
-  --         -- Build Step is needed for regex support in snippets
-  --         -- This step is not supported in many windows environments
-  --         -- Remove the below condition to re-enable on windows
-  --         if vim.fn.has 'win32' == 1 then
-  --           return
-  --         end
-  --         return 'make install_jsregexp'
-  --       end)(),
-  --     },
-  --     'saadparwaiz1/cmp_luasnip',
-  --
-  --     -- Adds LSP completion capabilities
-  --     'hrsh7th/cmp-nvim-lsp',
-  --     'hrsh7th/cmp-path',
-  --
-  --     -- Adds a number of user-friendly snippets
-  --     'rafamadriz/friendly-snippets',
-  --   },
-  -- },
 
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim',  opts = {} },
@@ -220,8 +194,8 @@ require('lazy').setup({
   { 'rebelot/kanagawa.nvim', },
   { 'savq/melange-nvim', },
   { "nyoom-engineering/oxocarbon.nvim" },
-  { "rose-pine/neovim",                name = "rose-pine" },
-  { "catppuccin/nvim",                 name = "catppuccin" },
+  { "rose-pine/neovim", name = "rose-pine" },
+  { "catppuccin/nvim", name = "catppuccin" },
   { "EdenEast/nightfox.nvim" },
 
   {
@@ -248,14 +222,22 @@ require('lazy').setup({
   },
   {
     "OXY2DEV/markview.nvim",
-    lazy = true,     -- Recommended
+    lazy = false,     -- Recommended
     ft = "markdown", -- If you decide to lazy-load anyway
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "nvim-tree/nvim-web-devicons"
     },
   },
+  {
 
+    "lervag/vimtex",
+    lazy = true,     -- we don't want to lazy load VimTeX
+    init = function()
+      -- VimTeX configuration goes here, e.g.
+      vim.g.vimtex_view_method = "zathura"
+    end
+  },
 }, {})
 
 -- vim: ts=2 sts=2 sw=2 et
