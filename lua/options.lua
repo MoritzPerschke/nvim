@@ -57,7 +57,6 @@ local function quickfix()
         apply = true
     })
 end
-
 vim.keymap.set('n', '<leader>qf', quickfix, opts)
 
 require('markview').setup({
@@ -70,6 +69,14 @@ require('markview').setup({
   }
 })
 
+
+vim.keymap.set('n', '<leader>zf', 'V]Mzf', {desc = 'Create fold from cursor to end of next function'})
+
+-- Highlight current cursor position
+vim.cmd('hi clear CursorLine')
+vim.cmd('hi CursorLine gui=underline cterm=underline')
+vim.cmd('set cursorline')
+
 -- set color scheme
-vim.cmd('colorscheme oxocarbon')
+vim.cmd('colorscheme kanagawa')
 -- vim: ts=2 sts=2 sw=2 et
