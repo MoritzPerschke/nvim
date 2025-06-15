@@ -79,35 +79,42 @@ require('mason-lspconfig').setup()
 local servers = {
   clangd = {
     cmd = {
-      -- "--clang-tidy",
-      -- "--checks=modernize-*,bugprone-*",
-      -- "--warnings-as-errors=*",
-      -- "--enable-config",
+      "--clang-tidy",
+      "--checks=modernize-*,bugprone-*",
+      "--warnings-as-errors=*",
+      "--enable-config",
     },
   },
   -- gopls = {},
   pyright = {},
-  -- rust_analyzer = {},
+  rust_analyzer = {},
   -- tsserver = {},
-  -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+  html = { filetypes = { 'html', 'twig', 'hbs'} },
 
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
       -- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-      diagnostics = { disable = { 'missing-fields' } },
+      diagnostics = { 
+        disable = { 'missing-fields' },
+        globals = {
+          'vim',
+          'require',
+        }
+      },
     },
   },
 }
+
 vim.keymap.set('n', '<leader>di', vim.diagnostic.open_float, { desc = "Show diagnostics" })
 
 -- Setup neovim lua configuration
 require('neodev').setup()
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
@@ -116,15 +123,31 @@ mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
 }
 
-mason_lspconfig.setup_handlers {
-  function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name],
-      filetypes = (servers[server_name] or {}).filetypes,
-    }
-  end,
-}
+-- I kinda hate this, but i can't figure out a more concise way right now
+vim.lsp.config('pyright', {
+  on_attach = on_attach,
+})
+
+vim.lsp.config('rust_analyzer', {
+  on_attach = on_attach,
+})
+
+vim.lsp.config('clangd', {
+  on_attach = on_attach,
+  cmd = {
+    "--clang-tidy",
+    "--checks=modernize-*,bugprone-*",
+    "--warnings-as-errors=*",
+    "--enable-config",
+  },
+})
+
+-- -- Loop over servers and setup each with common config + server-specific config
+-- for server, config in pairs(servers) do
+--   mason_lspconfig[server].setup(vim.tbl_deep_extend("force", {
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--   }, config))
+-- end
 
 -- vim: ts=2 sts=2 sw=2 et

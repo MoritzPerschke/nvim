@@ -197,6 +197,7 @@ require('lazy').setup({
   { "rose-pine/neovim", name = "rose-pine" },
   { "catppuccin/nvim", name = "catppuccin" },
   { "EdenEast/nightfox.nvim" },
+  { "neanias/everforest-nvim"},
 
   {
     "ThePrimeagen/harpoon",
@@ -232,7 +233,7 @@ require('lazy').setup({
   {
 
     "lervag/vimtex",
-    lazy = true,     -- we don't want to lazy load VimTeX
+    lazy = false,     -- we don't want to lazy load VimTeX
     init = function()
       -- VimTeX configuration goes here, e.g.
       vim.g.vimtex_view_method = "zathura"
