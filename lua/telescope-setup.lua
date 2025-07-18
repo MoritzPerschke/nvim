@@ -52,14 +52,34 @@ vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
 
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+    layout_config = {
+      anchor = "SE",
+      width  = 0.5,
+      height = 0.75,
+      prompt_position = "bottom",
+    },
     winblend = 10,
     previewer = false,
   })
 end, { desc = '[/] Fuzzily search in current buffer' })
+vim.keymap.set('n', '<leader><space>', function()
+  require('telescope.builtin').buffers {
+    prompt_title = 'Buffers',
+    layout_strategy = "vertical",
+    layout_config = {
+      anchor = "SE",
+      width = 0.35,
+      height = 0.75,
+      prompt_position = "bottom",
+    },
+    winblend = 10,
+    previewer = true,
+    sort_lastused = true,
+  }
+end, { desc = '[ ] Find existing buffers' })
 
 local function telescope_live_grep_open_files()
   require('telescope.builtin').live_grep {
@@ -67,6 +87,7 @@ local function telescope_live_grep_open_files()
     prompt_title = 'Live Grep in Open Files',
   }
 end
+
 vim.keymap.set('n', '<leader>s/', telescope_live_grep_open_files, { desc = '[S]earch [/] in Open Files' })
 vim.keymap.set('n', '<leader>ss', require('telescope.builtin').builtin, { desc = '[S]earch [S]elect Telescope' })
 vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
