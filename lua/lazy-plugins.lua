@@ -1,9 +1,3 @@
--- [[ Configure plugins ]]
--- NOTE: Here is where you install your plugins.
---  You can configure plugins using the `config` key.
---
---  You can also configure plugins after the setup call,
---    as they will be available in your neovim runtime.
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
 
@@ -187,10 +181,6 @@ require('lazy').setup({
 
   -- Colorschemes
   { 'navarasu/onedark.nvim', },
-  {
-    'folke/tokyonight.nvim',
-    lazy = false,
-  },
   { 'rebelot/kanagawa.nvim', },
   { 'savq/melange-nvim', },
   { "nyoom-engineering/oxocarbon.nvim" },
@@ -198,6 +188,11 @@ require('lazy').setup({
   { "catppuccin/nvim", name = "catppuccin" },
   { "EdenEast/nightfox.nvim" },
   { "neanias/everforest-nvim"},
+  { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
+  {
+    'folke/tokyonight.nvim',
+    lazy = false,
+  },
 
   {
     "ThePrimeagen/harpoon",
@@ -218,18 +213,11 @@ require('lazy').setup({
     'tamago324/lir.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim',
+      'tamago324/lir-git-status.nvim',
       'kyazdani42/nvim-web-devicons'
     }
   },
-  {
-    "OXY2DEV/markview.nvim",
-    lazy = false,     -- Recommended
-    ft = "markdown", -- If you decide to lazy-load anyway
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons"
-    },
-  },
+
   {
 
     "lervag/vimtex",
@@ -239,6 +227,11 @@ require('lazy').setup({
       vim.g.vimtex_view_method = "zathura"
     end
   },
+
+  {
+    "jbyuki/venn.nvim"
+  },
+
 }, {})
 
 -- vim: ts=2 sts=2 sw=2 et
