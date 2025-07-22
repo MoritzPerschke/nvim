@@ -75,9 +75,11 @@ vim.keymap.set('n', '<leader><space>', function()
       height = 0.75,
       prompt_position = "bottom",
     },
+    path_display = { "smart" },
     winblend = 10,
     previewer = true,
     sort_lastused = true,
+    ignore_current_buffer = true,
   }
 end, { desc = '[ ] Find existing buffers' })
 
