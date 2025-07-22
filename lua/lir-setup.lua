@@ -7,7 +7,7 @@ local clipboard_actions = require'lir.clipboard.actions'
 
 require'lir'.setup {
   show_hidden_files = false,
-  ignore = {}, -- { ".DS_Store", "node_modules" } etc.
+  ignore =  { ".DS_Store", "node_modules" },
   devicons = {
     enable = true,
     highlight_dirname = true
@@ -51,25 +51,25 @@ require'lir'.setup {
   float = {
     winblend = 0,
     curdir_window = {
-      enable = false, -- false while using noice
-      highlight_dirname = true
+      enable = true,
+      highlight_dirname = false
     },
 
-    -- -- -- You can define a function that returns a table to be passed as the third
-    -- -- -- argument of nvim_open_win().
-    -- win_opts = function()
-    --   local width = math.floor(vim.o.columns * 0.5)
-    --   local height = math.floor(vim.o.lines * 0.5)
-    --   return {
-    --     border = {
-    --       "+", "=", "+", "│", "+", "=", "+", "│",
-    --     },
-    --     width = width,
-    --     height = height,
-    --     row = math.floor((vim.o.lines - height) / 2),
-    --     col = math.floor((vim.o.columns - width) / 2),
-    --   }
-    -- end,
+    -- -- You can define a function that returns a table to be passed as the third
+    -- -- argument of nvim_open_win().
+    win_opts = function()
+      local width = math.floor(vim.o.columns * 0.4)
+      local height = math.floor(vim.o.lines * 0.5)
+      return {
+        border = {
+          "┏", "━", "┓", "┃", "┛", "━", "┗", "┃",
+        },
+        width = width,
+        height = height,
+        row = math.floor((vim.o.lines - height)/ 2),
+        col = math.floor((vim.o.columns - width) / 2),
+      }
+    end,
 
   },
   hide_cursor = true
@@ -127,3 +127,7 @@ augroup my-lir
   autocmd User LirSetTextFloatCurdirWindow lua _LirSetTextFloatCurdirWindow()
 augroup END
 ]], {})
+
+require'lir.git_status'.setup({
+  show_ignored = false
+})
