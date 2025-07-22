@@ -24,8 +24,12 @@ local on_attach = function(_, bufnr)
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
   nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
   nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
-  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
   nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+  nmap('<leader>ds', function()
+    require('telescope.builtin').lsp_document_symbols {
+      sorting_strategy = "ascending"
+    }
+  end, '[D]ocument [S]ymbols')
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
@@ -79,10 +83,10 @@ require('mason-lspconfig').setup()
 local servers = {
   clangd = {
     cmd = {
-      "--clang-tidy",
-      "--checks=modernize-*,bugprone-*",
-      "--warnings-as-errors=*",
-      "--enable-config",
+      -- "--clang-tidy",
+      -- "--checks=modernize-*,bugprone-*",
+      -- "--warnings-as-errors=*",
+      -- "--enable-config",
     },
   },
   -- gopls = {},
@@ -134,11 +138,14 @@ vim.lsp.config('rust_analyzer', {
 
 vim.lsp.config('clangd', {
   on_attach = on_attach,
+  filetypes = {"h", "c", "cpp"},
   cmd = {
+    "clangd",
+    "--background-index",
     "--clang-tidy",
-    "--checks=modernize-*,bugprone-*",
-    "--warnings-as-errors=*",
-    "--enable-config",
+    -- "--check=modernize-*,bugprone-*",
+    -- "--warnings-as-erors=*",
+    -- "--enable-config",
   },
 })
 
