@@ -59,24 +59,41 @@ local function quickfix()
 end
 vim.keymap.set('n', '<leader>qf', quickfix, opts)
 
-require('markview').setup({
-    -- Other configurations for markview.nvim
-    split_conf = {
-        split = "below", -- Options: "below", "above", "left", "right"
-    },
-    preview = {
-      linewise_hybrid_mode = true
-  }
-})
-
-
-vim.keymap.set('n', '<leader>zf', 'V]Mzf', {desc = 'Create fold from cursor to end of next function'})
+vim.keymap.set('n', '<leader>zf', 'zf]M', {desc = 'Create fold from cursor to end of next function'})
 
 -- Highlight current cursor position
 vim.cmd('hi clear CursorLine')
 vim.cmd('hi CursorLine gui=underline cterm=underline')
 vim.cmd('set cursorline')
 
+vim.opt.wildignore:append({
+  "blue.vim",
+  "darkblue.vim",
+  "delek.vim",
+  "desert.vim",
+  "elflord.vim",
+  "evening.vim",
+  "industry.vim",
+  "habamax.vim",
+  "koehler.vim",
+  "lunaperche.vim",
+  "morning.vim",
+  "murphy.vim",
+  "pablo.vim",
+  "peachpuff.vim",
+  "quiet.vim",
+  "ron.vim",
+  "shine.vim",
+  "slate.vim",
+  "sorbet.vim",
+  "retrobox.vim",
+  "torte.vim",
+  "wildcharm.vim",
+  "zaibatsu.vim",
+  "zellner.vim",
+})
+
 -- set color scheme
-vim.cmd('colorscheme kanagawa')
+vim.cmd('colorscheme gruvbox')
+
 -- vim: ts=2 sts=2 sw=2 et
