@@ -81,20 +81,12 @@ require('mason-lspconfig').setup()
 --  define the property 'filetypes' to the map in question.
 
 local servers = {
-  clangd = {
-    cmd = {
-      -- "--clang-tidy",
-      -- "--checks=modernize-*,bugprone-*",
-      -- "--warnings-as-errors=*",
-      -- "--enable-config",
-    },
-  },
+  clangd = {},
   -- gopls = {},
   pyright = {},
   rust_analyzer = {},
-  -- tsserver = {},
-  html = { filetypes = { 'html', 'twig', 'hbs'} },
-
+  phpactor = {},
+  html = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -128,6 +120,10 @@ mason_lspconfig.setup {
 }
 
 -- I kinda hate this, but i can't figure out a more concise way right now
+vim.lsp.config('phpactor', {
+  on_attach = on_attach,
+})
+
 vim.lsp.config('pyright', {
   on_attach = on_attach,
 })
@@ -143,18 +139,19 @@ vim.lsp.config('clangd', {
     "clangd",
     "--background-index",
     "--clang-tidy",
-    -- "--check=modernize-*,bugprone-*",
-    -- "--warnings-as-erors=*",
-    -- "--enable-config",
   },
 })
 
--- -- Loop over servers and setup each with common config + server-specific config
--- for server, config in pairs(servers) do
---   mason_lspconfig[server].setup(vim.tbl_deep_extend("force", {
---     on_attach = on_attach,
---     capabilities = capabilities,
---   }, config))
--- end
+vim.lsp.config('lua_ls', {
+    workspace = { checkThirdParty = false },
+    telemetry = { enable = false },
+    -- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+    diagnostics = {
+      disable = { 'missing-fields' },
+      globals = {
+        'vim',
+      }
+    },
+})
 
 -- vim: ts=2 sts=2 sw=2 et
