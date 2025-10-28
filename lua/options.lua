@@ -94,6 +94,6 @@ vim.opt.wildignore:append({
 })
 
 -- set color scheme
-vim.cmd('colorscheme gruvbox')
+vim.cmd('colorscheme kanagawa')
 
 -- vim: ts=2 sts=2 sw=2 et
