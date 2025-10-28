@@ -3,3 +3,4 @@ test.sh
 .luarc.json
 nvim
 startuptime.log
+lazy-lock.json
