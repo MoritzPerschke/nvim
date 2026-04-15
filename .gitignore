@@ -4,3 +4,4 @@ test.sh
 nvim
 startuptime.log
 lazy-lock.json
+/lazy-lock.json
