@@ -85,15 +85,14 @@ local servers = {
   -- gopls = {},
   pyright = {},
   rust_analyzer = {},
-  phpactor = {},
   html = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
       -- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-      diagnostics = { 
-        disable = { 'missing-fields' },
+      diagnostics = {
+        disable = { 'missing-fields', 'undefined-global' },
         globals = {
           'vim',
           'require',
@@ -120,9 +119,6 @@ mason_lspconfig.setup {
 }
 
 -- I kinda hate this, but i can't figure out a more concise way right now
-vim.lsp.config('phpactor', {
-  on_attach = on_attach,
-})
 
 vim.lsp.config('pyright', {
   on_attach = on_attach,
@@ -130,6 +126,23 @@ vim.lsp.config('pyright', {
 
 vim.lsp.config('rust_analyzer', {
   on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = { "rust-analyzer" },
+  settings = {
+    ["rust-analyzer"] = {
+      files = { watcher = "server" },
+      cargo = { targetDir = true },
+      check = { command = "clippy" },
+      inlayHints = {
+        bindingModeHints = { enabled = true },
+        closureCaptureHints = { enabled = true },
+        closureReturnTypeHints = { enable = "always" },
+        maxLength = 100,
+      },
+      rustc = { source = "discover" },
+    },
+    root_markers = { { "Config.toml" }, ".git" },
+  }
 })
 
 vim.lsp.config('clangd', {
@@ -147,7 +160,7 @@ vim.lsp.config('lua_ls', {
     telemetry = { enable = false },
     -- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
     diagnostics = {
-      disable = { 'missing-fields' },
+      disable = { 'missing-fields', 'undefined-global'},
       globals = {
         'vim',
       }

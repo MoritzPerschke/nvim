@@ -98,4 +98,5 @@ vim.opt.wildignore:append({
 -- set color scheme
 vim.cmd('colorscheme kanagawa')
 
+-- vim.api.nvim_set_hl(0, 'Normal', {bg = 'NONE'})
 -- vim: ts=2 sts=2 sw=2 et

@@ -28,9 +28,6 @@ require 'cmp-setup'
 -- [[ Configure lir (file explorer) ]]
 require 'lir-setup'
 
--- [[ Configure venn (drawing diagrams) ]]
-require 'venn-setup'
-
 -- [[ Basic Keymaps ]]
 require 'keymaps'
 

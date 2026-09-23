@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd('FileType', {
   group = vim.api.nvim_create_augroup('treesitter_setup', { clear = true }),
   pattern = '*',
   callback = function(ev)
-    if ev.match == 'latex' then return end
+    if ev.match == 'tex' then return end
     pcall(vim.treesitter.start, ev.buf)
     vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
   end,

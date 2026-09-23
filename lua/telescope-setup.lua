@@ -8,6 +8,13 @@ require('telescope').setup {
         ['<C-d>'] = false,
       },
     },
+    layout_strategy = "vertical",
+    layout_config = {
+      anchor = "SE",
+      width = 0.5,
+      height = 0.75,
+      prompt_position = "bottom",
+    },
   },
 }
 
@@ -55,12 +62,6 @@ vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc =
 vim.keymap.set('n', '<leader>/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    layout_config = {
-      anchor = "SE",
-      width  = 0.5,
-      height = 0.75,
-      prompt_position = "bottom",
-    },
     winblend = 10,
     previewer = false,
   })
@@ -68,13 +69,6 @@ end, { desc = '[/] Fuzzily search in current buffer' })
 vim.keymap.set('n', '<leader><space>', function()
   require('telescope.builtin').buffers {
     prompt_title = 'Buffers',
-    layout_strategy = "vertical",
-    layout_config = {
-      anchor = "SE",
-      width = 0.35,
-      height = 0.75,
-      prompt_position = "bottom",
-    },
     path_display = { "smart" },
     winblend = 10,
     previewer = true,

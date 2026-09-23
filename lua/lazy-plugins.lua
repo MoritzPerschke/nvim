@@ -68,6 +68,8 @@ require('lazy').setup({
         topdelete = { text = '‾' },
         changedelete = { text = '~' },
       },
+      current_line_blame = true,
+      current_line_blame_opts = { delay = 200, },
       on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
 
@@ -190,10 +192,7 @@ require('lazy').setup({
   { "EdenEast/nightfox.nvim" },
   { "neanias/everforest-nvim"},
   { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
-  {
-    'folke/tokyonight.nvim',
-    lazy = false,
-  },
+  { 'folke/tokyonight.nvim', lazy = false, },
 
   {
     "ThePrimeagen/harpoon",
@@ -240,6 +239,16 @@ require('lazy').setup({
       "nvim-treesitter/nvim-treesitter",
     },
   },
+
+  {
+      'MeanderingProgrammer/render-markdown.nvim',
+      dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' },            -- if you use the mini.nvim suite
+      -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },        -- if you use standalone mini plugins
+      -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+      ---@module 'render-markdown'
+      ---@type render.md.UserConfig
+      opts = {},
+  }
 
 }, {})
 

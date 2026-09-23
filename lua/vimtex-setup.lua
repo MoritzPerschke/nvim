@@ -25,6 +25,7 @@ vim.g.vimtex_toc_config = {
 
 vim.g.vimtex_quickfix_ignore_filters = {
   'Underfull',
+  'Overfull',
   'Missing "year"',
   'Missing "booktitle"',
   'Missing "journal"',
