@@ -186,7 +186,6 @@ require('lazy').setup({
   { 'navarasu/onedark.nvim', },
   { 'rebelot/kanagawa.nvim', },
   { 'savq/melange-nvim', },
-  { "nyoom-engineering/oxocarbon.nvim" },
   { "rose-pine/neovim", name = "rose-pine" },
   { "catppuccin/nvim", name = "catppuccin" },
   { "EdenEast/nightfox.nvim" },

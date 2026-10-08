@@ -51,22 +51,23 @@ require'lir'.setup {
   float = {
     winblend = 0,
     curdir_window = {
-      enable = true,
-      highlight_dirname = false
+      enable = false,
+      highlight_dirname = true
     },
 
     -- -- You can define a function that returns a table to be passed as the third
     -- -- argument of nvim_open_win().
     win_opts = function()
-      local width = math.floor(vim.o.columns * 0.4)
+      local width = math.floor(vim.o.columns * 0.5)
       local height = math.floor(vim.o.lines * 0.5)
       return {
         border = {
-          "┏", "━", "┓", "┃", "┛", "━", "┗", "┃",
+          -- starting at upper left corner, clockwise
+          "", "", " ", " ", " ", " ", "", "",
         },
         width = width,
         height = height,
-        row = math.floor((vim.o.lines - height)/ 2),
+        row = math.floor((vim.o.lines - height) / 2),
         col = math.floor((vim.o.columns - width) / 2),
       }
     end,
@@ -75,8 +76,8 @@ require'lir'.setup {
   hide_cursor = true
 }
 
-vim.api.nvim_create_autocmd({'FileType'}, {
-  pattern = {"lir"},
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "lir",
   callback = function()
     -- use visual mode
     vim.api.nvim_buf_set_keymap(
@@ -86,10 +87,22 @@ vim.api.nvim_create_autocmd({'FileType'}, {
       ':<C-u>lua require"lir.mark.actions".toggle_mark("v")<CR>',
       { noremap = true, silent = true }
     )
-  
+
+    -- Current directory as a title
+    vim.api.nvim_set_hl(0, "LirTitle", {
+      link = "Title",
+    })
+
+  vim.wo.winbar =
+    "%#LirTitle#>   %{fnamemodify(expand('%:p'), ':~')}  %= "
+
     -- echo cwd
-    vim.api.nvim_echo({ { vim.fn.expand("%:p"), "Normal" } }, false, {})
-  end
+    vim.api.nvim_echo(
+      { { vim.fn.expand("%:p"), "Normal" } },
+      false,
+      {}
+    )
+  end,
 })
 
 -- custom folder icon
