@@ -17,7 +17,7 @@ vim.g.vimtex_toc_config = {
   show_help = 0,
   layer_status = {
     content = 1,
-    label = 1,
+    label = 0,
     todo = 1,
     include = 0,
   }
